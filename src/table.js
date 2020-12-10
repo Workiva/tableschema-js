@@ -248,7 +248,6 @@ class Table {
 
     // Handle csv errors
     rowStream.on('finish', () => {
-      console.log('createRowStream delimiter', parser.options.delimiter)
       // Store the detected delimiter
       _this._detectedParserOptions = {
         delimiter: parser.options ? parser.options.delimiter.toString() : null,
@@ -368,7 +367,6 @@ class Table {
 // Internal
 
 async function createRowStream(source, encoding, parserOptions) {
-  console.log('Calling create row stream')
   const parser = csv({ ltrim: true, relax_column_count: true, ...parserOptions })
   let stream
 
@@ -444,7 +442,6 @@ function createCsvDelimiterDetector(csvParser) {
       if (delimiter.match(/[a-zA-Z0-9+]/)) delimiter = ','
       csvParser.options.delimiter = Buffer.from(delimiter, 'utf-8')
       done = true
-      console.log('createCsvDelimiterDetector delimiter', csvParser.options.delimiter)
     }
   })
 
