@@ -440,6 +440,7 @@ function createCsvDelimiterDetector(csvParser) {
     if (!done) {
       let delimiter = sniffer.sniff(chunk.toString()).delimiter || ','
       if (delimiter.match(/[a-zA-Z0-9+]/)) delimiter = ','
+      if (delimiter === '-') delimiter = ','
       csvParser.options.delimiter = Buffer.from(delimiter, 'utf-8')
       done = true
     }
