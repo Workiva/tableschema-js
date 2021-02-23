@@ -241,7 +241,8 @@ class Table {
     )
 
     // Handle csv errors
-    rowStream.on('error', () => {
+    rowStream.on('error', (e) => {
+      console.log(e)
       const error = new TableSchemaError('Data source parsing error')
       tableRowStream.emit('error', error)
     })
