@@ -434,7 +434,7 @@ async function createRowStream(source, encoding, parserOptions) {
  */
 function createCsvDelimiterDetector(csvParser) {
   const detector = PassThrough()
-  const sniffer = new CSVSniffer()
+  const sniffer = new CSVSniffer(csvParser.options.delimiters)
   let done = false
 
   detector.on('data', (chunk) => {
